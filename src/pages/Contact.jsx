@@ -79,162 +79,251 @@ const Contact = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20 px-4">
+    <div className="pt-24 pb-20 px-4 bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto text-center mb-16">
-        <motion.h1 
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-primary">Contact</span> Us
-        </motion.h1>
-        <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          We'd love to hear from you. Reach out to us with any questions or to schedule a visit.
-        </p>
+      <section className="relative py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white mb-16 rounded-2xl overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-baloo"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Get in <span className="text-yellow-300">Touch</span>
+          </motion.h1>
+          <div className="w-24 h-1.5 bg-yellow-300 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 font-open-sans">
+            We're here to help and answer any questions you might have. We look forward to hearing from you.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <a 
+              href="#contact-form" 
+              className="flex items-center bg-white text-primary px-6 py-3 rounded-full font-baloo font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Send a Message <FaPaperPlane className="ml-2" />
+            </a>
+            <a 
+              href="#contact-info" 
+              className="flex items-center border-2 border-white text-white px-6 py-3 rounded-full font-baloo font-semibold hover:bg-white/10 transition-all duration-300"
+            >
+              Contact Info
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Contact Information */}
-      <section className="max-w-6xl mx-auto mb-20">
+      <section id="contact-info" className="max-w-6xl mx-auto mb-20">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">How Can We <span className="text-primary">Help You?</span></h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">Feel free to reach out to us through any of these channels. Our team is here to assist you.</p>
+        </motion.div>
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {contactInfo.map((item, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-              initial={{ opacity: 0, y: 20 }}
+              className="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 relative overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ y: -5 }}
             >
-              <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
-                {item.icon}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                <div className="space-y-1 mb-4">
+                  <p className="text-gray-700">{item.description}</p>
+                  {item.subDescription && <p className="text-gray-600 text-sm">{item.subDescription}</p>}
+                </div>
+                <a 
+                  href={item.link} 
+                  className="inline-flex items-center text-primary font-medium group-hover:text-primary-dark transition-colors duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.linkText}
+                  <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-600 mb-1">{item.description}</p>
-              {item.subDescription && <p className="text-gray-600 text-sm">{item.subDescription}</p>}
-              <a 
-                href={item.link} 
-                className="inline-block mt-3 text-primary font-medium hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.linkText}
-              </a>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Contact Form and Map */}
-      <section className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Contact Form */}
+      <div className="max-w-6xl mx-auto mb-20">
+        <section id="contact-form">
           <motion.div 
-            className="lg:w-1/2"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="p-6 border-b border-gray-100">
-                <h2 className="text-2xl font-bold">Send Us a Message</h2>
-                <p className="text-gray-600">We'll get back to you as soon as possible</p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="p-6">
-                {submitSuccess && (
-                  <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-start">
-                    <FaCheckCircle className="text-green-500 text-xl mt-0.5 mr-3 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium">Message Sent Successfully!</h3>
-                      <p className="text-sm">Thank you for contacting us. We'll get back to you soon.</p>
-                    </div>
-                  </div>
-                )}
-                
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
+          {/* Contact Form */}
+          <div className="w-full lg:w-1/2 p-8 md:p-12">
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-2">Send Us a Message</h2>
+              <p className="text-gray-600">Fill out the form and our team will get back to you within 24 hours.</p>
+            </motion.div>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {submitSuccess && (
+                <motion.div 
+                  className="p-4 bg-green-50 text-green-700 rounded-xl flex items-start"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FaCheckCircle className="text-green-500 text-xl mt-0.5 mr-3 flex-shrink-0" />
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                    <h3 className="font-bold">Message Sent Successfully!</h3>
+                    <p className="text-sm">Thank you for contacting us. We'll get back to you soon.</p>
+                  </div>
+                </motion.div>
+              )}
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Your Name <span className="text-red-500">*</span></label>
+                  <div className="relative">
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all duration-200"
                       required
+                      placeholder="John Doe"
                     />
                   </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                      required
-                    />
-                  </div>
-                </div>
+                </motion.div>
                 
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email Address <span className="text-red-500">*</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all duration-200"
+                    required
+                    placeholder="your@email.com"
+                  />
+                </motion.div>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all duration-200"
+                    placeholder="+1 (555) 123-4567"
+                  />
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1.5">Subject <span className="text-red-500">*</span></label>
                     <select
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all duration-200"
                       required
                     >
                       <option value="">Select a subject</option>
                       <option value="Admission Inquiry">Admission Inquiry</option>
-                      <option value="General Question">General Question</option>
-                      <option value="Feedback">Feedback</option>
-                      <option value="Complaint">Complaint</option>
+                      <option value="General Information">General Information</option>
+                      <option value="Academic Programs">Academic Programs</option>
+                      <option value="Campus Visit">Schedule a Campus Visit</option>
                       <option value="Other">Other</option>
                     </select>
-                  </div>
-                </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    viewport={{ once: true }}
+                    className="col-span-2"
+                  >
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Your Message <span className="text-red-500">*</span></label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="5"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none transition-all duration-200 resize-none"
+                      required
+                      placeholder="Type your message here..."
+                    ></textarea>
+                  </motion.div>
                 
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors flex items-center justify-center"
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  viewport={{ once: true }}
+                  className="col-span-2 pt-2"
                 >
-                  {isSubmitting ? (
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center ${
+                      isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:shadow-lg transform hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {isSubmitting ? (
                     <>
                       <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -248,38 +337,74 @@ const Contact = () => {
                       Send Message
                     </>
                   )}
-                </button>
-              </form>
-            </div>
-          </motion.div>
-          
-          {/* Map and Additional Info */}
-          <motion.div 
-            className="lg:w-1/2"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {/* Map */}
-            <div className="bg-gray-100 rounded-xl overflow-hidden mb-6 h-80">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.26485886413!2d72.8245153158498!3d19.05538898710165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8df0b2e7c5b%3A0x1adcee9a4a2b4f3d!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="School Location"
-              ></iframe>
+                  </button>
+                  
+                  {submitSuccess && (
+                    <motion.div 
+                      className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg flex items-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      <FaCheckCircle className="mr-2" />
+                      Your message has been sent successfully!
+                    </motion.div>
+                  )}
+                </motion.div>
+              </div>
+            </form>
+            
+            {/* Map and Additional Info */}
+            <div className="w-full lg:w-1/2 h-96 lg:h-auto relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-10"></div>
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
+                  <h3 className="text-xl font-bold mb-2">Our Location</h3>
+                  <p className="text-gray-600 mb-4">123 Education Street, Mumbai, Maharashtra 400001</p>
+                  <a 
+                    href="https://maps.google.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
+                  >
+                    View on Google Maps
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-400">Interactive Map Placeholder</span>
+              </div>
+              
+              {/* Social Media Links */}
+              <div className="flex justify-center space-x-4 mt-6">
+                {[
+                  { name: 'Instagram', icon: 'instagram', url: '#' },
+                  { name: 'YouTube', icon: 'youtube', url: '#' },
+                  { name: 'LinkedIn', icon: 'linkedin', url: '#' }
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                    aria-label={social.name}
+                  >
+                    <i className={`fab fa-${social.icon}`}></i>
+                  </a>
+                ))}
+              </div>
             </div>
             
             {/* Additional Contact Info */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
               <h3 className="text-xl font-semibold mb-4">Visit Our Campus</h3>
               <p className="text-gray-600 mb-4">
                 We welcome visitors to our campus. Schedule a tour to see our facilities and meet our staff.
               </p>
+            </div>
               
               <div className="space-y-4">
                 <div className="flex items-start">
@@ -316,30 +441,53 @@ const Contact = () => {
               </div>
             </div>
             
-            {/* Social Media Links */}
-            <div className="mt-6 flex justify-center space-x-4">
-              {[
-                { name: 'Facebook', icon: 'facebook', url: '#' },
-                { name: 'Twitter', icon: 'twitter', url: '#' },
-                { name: 'Instagram', icon: 'instagram', url: '#' },
-                { name: 'YouTube', icon: 'youtube', url: '#' },
-                { name: 'LinkedIn', icon: 'linkedin', url: '#' },
-              ].map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors"
-                  aria-label={social.name}
-                >
-                  <i className={`fab fa-${social.icon}`}></i>
-                </a>
-              ))}
+            {/* Map Section */}
+            <div className="w-full lg:w-1/2 h-96 lg:h-auto relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-10"></div>
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
+                  <h3 className="text-xl font-bold mb-2">Our Location</h3>
+                  <p className="text-gray-600 mb-4">123 Education Street, Mumbai, Maharashtra 400001</p>
+                  <a 
+                    href="https://maps.google.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
+                  >
+                    View on Google Maps
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-400">Interactive Map Placeholder</span>
+              </div>
+              
+              {/* Social Media Links */}
+              <div className="flex justify-center space-x-4 mt-6">
+                {[
+                  { name: 'Instagram', icon: 'instagram', url: '#' },
+                  { name: 'YouTube', icon: 'youtube', url: '#' },
+                  { name: 'LinkedIn', icon: 'linkedin', url: '#' }
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                    aria-label={social.name}
+                  >
+                    <i className={`fab fa-${social.icon}`}></i>
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* FAQ Section */}
       <section className="max-w-4xl mx-auto mt-20">

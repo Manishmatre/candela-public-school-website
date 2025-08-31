@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-1500 {
+  animation-delay: 1.5s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+:root {
+  /* Primary Colors */
+  --color-primary: #1F4E79;
+  --color-primary-light: #4A7BA8;
+  --color-primary-dark: #0F2A42;
+  
+  /* Accent Colors */
+  --color-accent-red: #E63946;
+  --color-accent-yellow: #F4A300;
+  --color-accent-green: #2CA24D;
+  
+  /* Text Colors */
+  --color-text-primary: #2D3748;
+  --color-text-secondary: #4A5568;
+  --color-text-light: #F7FAFC;
+  
+  /* Background Colors */
+  --color-bg-light: #F8F9FA;
+  --color-bg-dark: #1A202C;
+  
+  /* Status Colors */
+  --color-success: #2CA24D;
+  --color-warning: #F4A300;
+  --color-error: #E63946;
+  --color-info: #1F4E79;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-text-primary bg-white;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-primary;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+  }
+  
+  h1 { 
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    font-family: 'Playfair Display', serif;
+  }
+  h2 { 
+    @apply text-3xl md:text-4xl;
+    font-family: 'Playfair Display', serif;
+  }
+  h3 { 
+    @apply text-2xl md:text-3xl;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4 { 
+    @apply text-xl md:text-2xl;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+  
+  a {
+    @apply transition-colors duration-300 text-primary hover:text-primary-light;
+  }
+}
+
+/* Components */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-accent-green to-primary text-white hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent-red to-accent-yellow text-white hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100;
+  }
+  
+  /* Navigation Links */
+  .nav-link {
+    @apply relative px-4 py-2 text-text-primary hover:text-primary transition-colors duration-300 font-medium;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 -translate-x-1/2;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-3/4;
+  }
+  
+  /* Section Headers */
+  .section-header {
+    @apply text-center mb-16;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-6 relative inline-block;
+  }
+  
+  .section-title::after {
+    @apply content-[''] absolute bottom-0 left-1/2 w-20 h-1 bg-gradient-to-r from-primary to-primary-light -translate-x-1/2 translate-y-3;
+  }
+  
+  .section-subtitle {
+    @apply text-gray-600 max-w-2xl mx-auto;
+  }
+}

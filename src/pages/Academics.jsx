@@ -1,5 +1,6 @@
-import { FaBookOpen, FaGraduationCap, FaLaptopCode, FaFlask, FaChalkboardTeacher, FaUsers, FaMicroscope, FaBookReader } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { FaBookOpen, FaGraduationCap, FaLaptopCode, FaFlask, FaChalkboardTeacher, FaUsers, FaMicroscope, FaBookReader, FaQuoteLeft, FaChevronDown, FaChevronUp, FaUserTie, FaLightbulb, FaChartLine, FaHandsHelping } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 const Academics = () => {
   const programs = [
@@ -50,53 +51,134 @@ const Academics = () => {
     { name: 'Arts & Music', icon: <FaChalkboardTeacher className="text-3xl" />, color: 'bg-pink-100 text-pink-600' },
   ];
 
+  // FAQ Data
+  const faqs = [
+    {
+      question: 'What is the student-to-teacher ratio in your school?',
+      answer: 'We maintain an optimal student-to-teacher ratio of 12:1 to ensure personalized attention for each student.'
+    },
+    {
+      question: 'Do you offer any scholarship programs?',
+      answer: 'Yes, we offer merit-based scholarships and financial aid programs for eligible students.'
+    },
+    {
+      question: 'What extracurricular activities are available?',
+      answer: 'We offer a wide range of activities including sports, music, arts, coding club, debate, and more.'
+    },
+    {
+      question: 'How do you support students with different learning needs?',
+      answer: 'Our learning support team provides individualized education plans and resources for students with diverse learning needs.'
+    }
+  ];
+
+  // Testimonial Data
+  const testimonials = [
+    {
+      quote: "The academic program at Candela has helped my child develop a love for learning. The teachers are exceptional!",
+      author: "Sarah Johnson",
+      role: "Parent of Grade 5 Student"
+    },
+    {
+      quote: "The hands-on learning approach has made complex concepts so much easier to understand. I love going to school every day!",
+      author: "Michael Chen",
+      role: "Grade 10 Student"
+    },
+    {
+      quote: "The curriculum is challenging yet engaging, and the teachers go above and beyond to support each student's growth.",
+      author: "Priya Patel",
+      role: "Parent of Grade 8 Student"
+    }
+  ];
+
+  const [expandedFaq, setExpandedFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
+  };
+
   return (
-    <div className="pt-32 pb-20 px-4">
+    <div className="pt-24 pb-20">
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto text-center mb-20">
-        <motion.h1 
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Academic <span className="text-primary">Programs</span>
-        </motion.h1>
-        <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Our comprehensive academic programs are designed to challenge students, foster intellectual curiosity, and prepare them for success in higher education and beyond.
-        </p>
+      <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-24 mb-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 -left-20 w-64 h-64 rounded-full bg-yellow-300"></div>
+          <div className="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full bg-white"></div>
+        </div>
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Shaping <span className="text-yellow-400">Minds</span>, Building <span className="text-yellow-400">Futures</span>
+            </h1>
+            <div className="w-32 h-1.5 bg-yellow-400 mx-auto mb-8"></div>
+            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              Our comprehensive academic programs are designed to challenge students, foster intellectual curiosity, and prepare them for success in higher education and beyond.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Academic Programs */}
-      <section className="max-w-6xl mx-auto mb-20">
+      <section className="max-w-7xl mx-auto px-4 mb-28">
+        <div className="text-center mb-16">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Our <span className="text-primary">Academic Programs</span>
+          </motion.h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Tailored educational pathways designed to inspire excellence and personal growth at every stage of learning.
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8">
           {programs.map((program, index) => (
             <motion.div 
               key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+              className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition-all duration-300 border border-gray-100"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="p-8">
-                <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6 mx-auto">
-                  {program.icon}
+              <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative p-8">
+                  <div className="w-20 h-20 rounded-2xl bg-blue-50 group-hover:bg-white/10 flex items-center justify-center mb-6 mx-auto transition-colors duration-300">
+                    {program.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-center mb-3 group-hover:text-white transition-colors duration-300">{program.title}</h3>
+                  <div className="text-center text-sm font-medium text-primary group-hover:text-yellow-300 mb-4 transition-colors duration-300">
+                    {program.grades}
+                  </div>
+                  <p className="text-gray-600 text-center mb-6 group-hover:text-white/90 transition-colors duration-300">
+                    {program.description}
+                  </p>
+                  <ul className="space-y-3 mt-6">
+                    {program.features.map((feature, i) => (
+                      <li key={i} className="flex items-start group-hover:text-white/90 transition-colors duration-300">
+                        <svg className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0 group-hover:text-yellow-300 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-gray-700 group-hover:text-white/90 transition-colors duration-300">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 text-center">
+                    <button className="px-6 py-2.5 rounded-lg bg-white text-primary font-medium shadow-md hover:bg-gray-50 transition-colors group-hover:bg-white/90 group-hover:text-primary-dark">
+                      Learn More
+                    </button>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-center mb-3">{program.title}</h3>
-                <p className="text-gray-600 text-center mb-4">{program.description}</p>
-                <div className="text-center text-sm font-medium text-primary mb-4">{program.grades}</div>
-                <ul className="space-y-2 mt-4">
-                  {program.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <svg className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </motion.div>
           ))}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaFileAlt, FaClipboardCheck, FaUserGraduate, FaSchool, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaFileAlt, FaClipboardCheck, FaUserGraduate, FaSchool, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChalkboardTeacher, FaArrowRight } from 'react-icons/fa';
 
 const Admissions = () => {
   const [activeTab, setActiveTab] = useState('process');
@@ -91,50 +91,62 @@ const Admissions = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20 px-4">
+    <div className="pt-24 pb-20 px-4 bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto text-center mb-16">
-        <motion.h1 
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-primary">Admissions</span> Process
-        </motion.h1>
-        <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Begin your child's educational journey with Candela Public School. We're excited to welcome new students to our community.
-        </p>
+      <section className="relative py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white mb-16 rounded-2xl overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-baloo"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Admissions <span className="text-yellow-300">at Candela</span>
+          </motion.h1>
+          <div className="w-24 h-1.5 bg-yellow-300 mx-auto mb-6 rounded-full"></div>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 font-open-sans">
+            Start your child's journey with a nurturing, inspiring learning environment.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
+            <a 
+              href="#admissions-tabs" 
+              className="flex items-center bg-white text-primary px-6 py-3 rounded-full font-baloo font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              onClick={(e) => { e.preventDefault(); setActiveTab('apply'); document.getElementById('admissions-tabs')?.scrollIntoView({behavior:'smooth'}); }}
+            >
+              Apply Online <FaArrowRight className="ml-2" />
+            </a>
+            <a 
+              href="/contact" 
+              className="flex items-center border-2 border-white text-white px-6 py-3 rounded-full font-baloo font-semibold hover:bg-white/10 transition-all duration-300"
+            >
+              Contact Admissions
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Tabs */}
-      <div className="max-w-6xl mx-auto mb-12">
-        <div className="flex flex-wrap border-b border-gray-200 mb-8">
-          <button
-            className={`px-6 py-3 font-medium text-sm md:text-base ${activeTab === 'process' ? 'text-primary border-b-2 border-primary' : 'text-gray-600 hover:text-primary'}`}
-            onClick={() => setActiveTab('process')}
-          >
-            Admission Process
-          </button>
-          <button
-            className={`px-6 py-3 font-medium text-sm md:text-base ${activeTab === 'requirements' ? 'text-primary border-b-2 border-primary' : 'text-gray-600 hover:text-primary'}`}
-            onClick={() => setActiveTab('requirements')}
-          >
-            Requirements
-          </button>
-          <button
-            className={`px-6 py-3 font-medium text-sm md:text-base ${activeTab === 'apply' ? 'text-primary border-b-2 border-primary' : 'text-gray-600 hover:text-primary'}`}
-            onClick={() => setActiveTab('apply')}
-          >
-            Apply Now
-          </button>
-          <button
-            className={`px-6 py-3 font-medium text-sm md:text-base ${activeTab === 'contact' ? 'text-primary border-b-2 border-primary' : 'text-gray-600 hover:text-primary'}`}
-            onClick={() => setActiveTab('contact')}
-          >
-            Contact Admissions
-          </button>
+      <div id="admissions-tabs" className="max-w-6xl mx-auto mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          {[
+            { id: 'process', label: 'Admission Process' },
+            { id: 'requirements', label: 'Requirements' },
+            { id: 'apply', label: 'Apply Now' },
+            { id: 'contact', label: 'Contact Admissions' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === tab.id
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
         <div className="min-h-[400px]">
@@ -145,43 +157,47 @@ const Admissions = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-bold mb-8">Our Admission Process</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-800">Our Admission Process</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {admissionProcess.map((step, index) => (
                   <motion.div
                     key={step.id}
-                    className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
+                    className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 p-6 text-center shadow-md hover:shadow-xl transition-all"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+                    <div className="w-16 h-16 rounded-2xl bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center mx-auto mb-4 transition-colors">
                       {step.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
-                    <div className="text-4xl font-bold text-gray-100 mt-2">0{step.id}</div>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900">{step.title}</h3>
+                    <p className="text-gray-600 mb-3">{step.description}</p>
+                    <div className="text-4xl font-extrabold text-gray-100/80 mt-2 select-none">0{step.id}</div>
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="inline-block text-sm font-medium text-primary">Learn more</span>
+                    </div>
                   </motion.div>
                 ))}
               </div>
               
-              <div className="mt-12 bg-blue-50 p-6 rounded-xl">
-                <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <div className="mt-12 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 md:p-8">
+                <h3 className="text-xl font-semibold mb-6 flex items-center text-blue-900">
                   <FaCalendarAlt className="text-primary mr-2" />
                   Important Dates
                 </h3>
-                <ul className="space-y-3">
-                  <li className="flex justify-between border-b border-blue-100 pb-2">
-                    <span>Application Deadline</span>
-                    <span className="font-medium">April 30, 2024</span>
+                <ul className="divide-y divide-blue-100">
+                  <li className="flex items-center justify-between py-3">
+                    <span className="text-gray-700">Application Deadline</span>
+                    <span className="font-semibold text-gray-900">April 30, 2024</span>
                   </li>
-                  <li className="flex justify-between border-b border-blue-100 pb-2">
-                    <span>Assessment Dates</span>
-                    <span className="font-medium">May 10-15, 2024</span>
+                  <li className="flex items-center justify-between py-3">
+                    <span className="text-gray-700">Assessment Dates</span>
+                    <span className="font-semibold text-gray-900">May 10-15, 2024</span>
                   </li>
-                  <li className="flex justify-between">
-                    <span>New Academic Year Begins</span>
-                    <span className="font-medium">June 10, 2024</span>
+                  <li className="flex items-center justify-between py-3">
+                    <span className="text-gray-700">New Academic Year Begins</span>
+                    <span className="font-semibold text-gray-900">June 10, 2024</span>
                   </li>
                 </ul>
               </div>
