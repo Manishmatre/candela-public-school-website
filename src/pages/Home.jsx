@@ -87,18 +87,20 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section - Kids Theme */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-400 to-purple-400 text-white py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-indigo-950 text-white py-10 md:py-20">
         {/* Playful Background Elements */}
+        {/* Soft dark overlay for better contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/50 to-black/65 pointer-events-none" />
         <div className="absolute inset-0 overflow-hidden">
           {/* Floating Shapes */}
-          <div className="absolute top-20 left-10 w-16 h-16 bg-yellow-300 rounded-full opacity-70 animate-float"></div>
-          <div className="absolute top-1/4 right-20 w-12 h-12 bg-pink-300 rounded-full opacity-70 animate-float animation-delay-1000"></div>
-          <div className="absolute bottom-1/3 left-1/4 w-14 h-14 bg-green-300 rounded-full opacity-70 animate-float animation-delay-2000"></div>
-          <div className="absolute top-1/3 right-1/4 w-10 h-10 bg-orange-300 rounded-full opacity-70 animate-float animation-delay-1500"></div>
+          <div className="hidden sm:block absolute top-20 left-10 w-16 h-16 bg-yellow-300 rounded-full opacity-35 animate-float"></div>
+          <div className="hidden sm:block absolute top-1/4 right-20 w-12 h-12 bg-pink-300 rounded-full opacity-35 animate-float animation-delay-1000"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-10 h-10 sm:w-14 sm:h-14 bg-green-300 rounded-full opacity-30 sm:opacity-35 animate-float animation-delay-2000"></div>
+          <div className="hidden sm:block absolute top-1/3 right-1/4 w-10 h-10 bg-orange-300 rounded-full opacity-35 animate-float animation-delay-1500"></div>
           
           {/* Decorative Elements */}
-          <div className="absolute bottom-10 left-1/4 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
-          <div className="absolute top-10 right-1/4 w-40 h-40 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
+          <div className="hidden sm:block absolute bottom-10 left-1/4 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-15"></div>
+          <div className="hidden sm:block absolute top-10 right-1/4 w-40 h-40 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-15"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-4">
@@ -109,26 +111,26 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <span className="inline-block bg-yellow-300 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full mb-4 shadow-md">
+              <span className="inline-block bg-yellow-400 text-blue-900 text-xs sm:text-sm font-bold px-3 py-1 sm:px-4 sm:py-1.5 rounded-full mb-4 shadow-md">
                 🎉 Welcome to Our Colorful World! 🎨
               </span>
             </motion.div>
             
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 leading-tight font-baloo tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 leading-snug sm:leading-tight font-baloo tracking-tight drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Where <span className="text-yellow-300">Little Stars</span> <br className="hidden md:block" />
-              <span className="text-pink-300">Shine Bright</span> at <br className="hidden md:block" />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-300">
+              Where <span className="text-yellow-400 drop-shadow-lg">Little Stars</span> <br className="hidden md:block" />
+              <span className="text-rose-400 drop-shadow-lg">Shine Bright</span> at <br className="hidden md:block" />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-rose-400 drop-shadow-lg">
                 Candela Kids
               </span>
             </motion.h1>
             
             <motion.p 
-              className="text-xl md:text-2xl mb-10 text-white max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-2xl mb-8 sm:mb-10 text-white/95 drop-shadow-md max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -138,14 +140,14 @@ const Home = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row justify-center gap-6"
+              className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Link 
                 to="/admissions" 
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-yellow-300 to-yellow-400 text-blue-700 font-bold rounded-full text-lg shadow-lg hover:shadow-xl hover:shadow-yellow-300/40 transition-all duration-300 overflow-hidden transform hover:scale-105"
+                className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-blue-900 font-bold rounded-full text-base sm:text-lg shadow-lg hover:shadow-xl hover:shadow-amber-400/40 transition-all duration-300 overflow-hidden transform hover:scale-105"
               >
                 <span className="relative z-10 flex items-center">
                   🎨 Join the Fun!
@@ -156,7 +158,7 @@ const Home = () => {
               
               <Link 
                 to="/contact" 
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-pink-400 hover:bg-pink-500 text-white font-semibold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pink-300/30"
+                className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-rose-300/30"
               >
                 <span className="relative z-10 flex items-center">
                   🎈 Schedule a Visit
@@ -166,7 +168,7 @@ const Home = () => {
             
             {/* Stats Counter */}
             <motion.div 
-              className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto bg-white/20 backdrop-blur-sm p-6 rounded-2xl border-2 border-white/30 shadow-lg"
+              className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-16 max-w-4xl mx-auto bg-white/20 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border-2 border-white/30 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -177,10 +179,10 @@ const Home = () => {
                   className="text-center bg-white/10 p-4 rounded-xl hover:bg-white/20 transition-colors duration-300 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-yellow-200 mb-1">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-200 mb-1">
                     {counter.current.toLocaleString()}+
                   </div>
-                  <div className="text-white text-sm md:text-base font-medium">{counter.text}</div>
+                  <div className="text-white text-xs sm:text-sm md:text-base font-medium">{counter.text}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -188,7 +190,7 @@ const Home = () => {
         </div>
         
         {/* Animated Scrolling Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
