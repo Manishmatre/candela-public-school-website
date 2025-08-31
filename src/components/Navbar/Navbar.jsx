@@ -340,9 +340,15 @@ const Navbar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className="fixed inset-0 bg-white z-[60] pt-32 pb-8 px-6 h-dvh lg:hidden shadow-2xl flex flex-col min-h-0 overflow-hidden overscroll-contain"
+                className="fixed inset-0 bg-white z-[60] pt-6 pb-8 px-6 h-dvh lg:hidden shadow-2xl flex flex-col min-h-0 overflow-hidden overscroll-contain"
                 style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2rem)' }}
               >
+              {/* Mobile Header with Logo */}
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
+                  <img src={Logo} alt="Candela Public School" className="h-10 w-auto object-contain" />
+                </Link>
+              </div>
               {/* Internal close button */}
               <motion.button
                 aria-label="Close menu"

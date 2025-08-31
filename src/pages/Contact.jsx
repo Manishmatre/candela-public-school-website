@@ -50,15 +50,15 @@ const Contact = () => {
     {
       icon: <FaMapMarkerAlt className="text-2xl text-primary" />,
       title: 'Our Location',
-      description: '123 Education Street, Mumbai, Maharashtra 400001',
-      link: 'https://maps.google.com',
+      description: 'Bakhrabad Sabujpally, Vill-Uttar Korkora, P.O.-Bakhrabad, Dist-Paschim Medinipur, West Bengal 721424',
+      link: 'https://www.google.com/maps/search/?api=1&query=Bakhrabad+Sabujpally,+Uttar+Korkora,+Bakhrabad,+Paschim+Medinipur,+West+Bengal+721424',
       linkText: 'View on Map'
     },
     {
       icon: <FaPhoneAlt className="text-2xl text-primary" />,
       title: 'Phone Number',
-      description: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      description: '7908238939 / 9933970075',
+      link: 'tel:+917908238939',
       linkText: 'Call Now'
     },
     {
@@ -353,140 +353,40 @@ const Contact = () => {
               </div>
             </form>
             
-            {/* Map and Additional Info */}
-            <div className="w-full lg:w-1/2 h-96 lg:h-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-10"></div>
-              <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
-                  <h3 className="text-xl font-bold mb-2">Our Location</h3>
-                  <p className="text-gray-600 mb-4">123 Education Street, Mumbai, Maharashtra 400001</p>
-                  <a 
-                    href="https://maps.google.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
-                  >
-                    View on Google Maps
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-400">Interactive Map Placeholder</span>
-              </div>
-              
-              {/* Social Media Links */}
-              <div className="flex justify-center space-x-4 mt-6">
-                {[
-                  { name: 'Instagram', icon: 'instagram', url: '#' },
-                  { name: 'YouTube', icon: 'youtube', url: '#' },
-                  { name: 'LinkedIn', icon: 'linkedin', url: '#' }
-                ].map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors"
-                    aria-label={social.name}
-                  >
-                    <i className={`fab fa-${social.icon}`}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
-            
-            {/* Additional Contact Info */}
-            <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
-              <h3 className="text-xl font-semibold mb-4">Visit Our Campus</h3>
-              <p className="text-gray-600 mb-4">
-                We welcome visitors to our campus. Schedule a tour to see our facilities and meet our staff.
-              </p>
-            </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-blue-100 p-2 rounded-lg text-primary">
-                    <FaClock className="h-5 w-5" />
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="font-medium text-gray-900">Visiting Hours</h4>
-                    <p className="text-gray-600 text-sm">Monday - Friday: 9:00 AM - 3:00 PM</p>
-                    <p className="text-gray-600 text-sm">Saturday: 9:00 AM - 1:00 PM</p>
-                    <p className="text-gray-500 text-xs mt-1">* By appointment only</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-blue-100 p-2 rounded-lg text-primary">
-                    <FaMapMarkerAlt className="h-5 w-5" />
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="font-medium text-gray-900">Getting Here</h4>
-                    <p className="text-gray-600 text-sm">We are located in the heart of Mumbai, easily accessible by public transportation.</p>
-                    <p className="text-gray-600 text-sm mt-1">Parking is available on-site for visitors.</p>
-                  </div>
-                </div>
-                
-                <div className="pt-4 border-t border-gray-100">
-                  <a
-                    href="/admissions#schedule-visit"
-                    className="inline-block w-full text-center bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors"
-                  >
-                    Schedule a Campus Tour
-                  </a>
-                </div>
-              </div>
             </div>
             
             {/* Map Section */}
-            <div className="w-full lg:w-1/2 h-96 lg:h-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-10"></div>
-              <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
-                  <h3 className="text-xl font-bold mb-2">Our Location</h3>
-                  <p className="text-gray-600 mb-4">123 Education Street, Mumbai, Maharashtra 400001</p>
-                  <a 
-                    href="https://maps.google.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
-                  >
-                    View on Google Maps
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
+            <div className="w-full lg:w-1/2 h-96 lg:h-auto">
+              <div className="w-full h-full overflow-hidden rounded-2xl shadow-md">
+                <iframe
+                  title="Candela Public School Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14773.327982018307!2d87.87716590073603!3d22.22747892299686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0294d50c805e35%3A0xe3fdce4a0bec618!2sBakhrabad%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1756662363262!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-400">Interactive Map Placeholder</span>
-              </div>
-              
-              {/* Social Media Links */}
-              <div className="flex justify-center space-x-4 mt-6">
-                {[
-                  { name: 'Instagram', icon: 'instagram', url: '#' },
-                  { name: 'YouTube', icon: 'youtube', url: '#' },
-                  { name: 'LinkedIn', icon: 'linkedin', url: '#' }
-                ].map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors"
-                    aria-label={social.name}
-                  >
-                    <i className={`fab fa-${social.icon}`}></i>
-                  </a>
-                ))}
-              </div>
+              <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
+                <h3 className="text-xl font-bold mb-2">Our Location</h3>
+                <p className="text-gray-600 mb-4">Bakhrabad Sabujpally, Vill-Uttar Korkora, P.O.-Bakhrabad, Dist-Paschim Medinipur, West Bengal 721424</p>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Bakhrabad+Sabujpally,+Uttar+Korkora,+Bakhrabad,+Paschim+Medinipur,+West+Bengal+721424" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors"
+                >
+                  View on Google Maps
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </motion.div>
+      </section>
       </div>
 
       {/* FAQ Section */}
@@ -529,12 +429,12 @@ const Contact = () => {
             >
               <button 
                 className="w-full px-6 py-4 text-left focus:outline-none"
-                onClick={() => setActiveTab(activeTab === `faq${index}` ? null : `faq${index}`)}
+                onClick={() => setActiveTab(activeTab === ('faq' + index) ? null : ('faq' + index))}
               >
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-medium text-gray-900">{faq.question}</h3>
                   <svg 
-                    className={`w-5 h-5 text-primary transform transition-transform ${activeTab === `faq${index}` ? 'rotate-180' : ''}`} 
+                    className={`w-5 h-5 text-primary transform transition-transform ${activeTab === ('faq' + index) ? 'rotate-180' : ''}`} 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
@@ -545,7 +445,7 @@ const Contact = () => {
               </button>
               
               <div 
-                className={`px-6 pb-4 ${activeTab === `faq${index}` ? 'block' : 'hidden'}`}
+                className={`px-6 pb-4 ${activeTab === ('faq' + index) ? 'block' : 'hidden'}`}
               >
                 <p className="text-gray-600">{faq.answer}</p>
               </div>
@@ -575,8 +475,8 @@ const Contact = () => {
           <div className="ml-3">
             <h3 className="text-sm font-medium text-red-800">Emergency Contact</h3>
             <div className="mt-2 text-sm text-red-700">
-              <p>For emergencies during school hours, please call our main office at <a href="tel:+15551234567" className="font-medium underline">+1 (555) 123-4567</a>.</p>
-              <p className="mt-1">For after-hours emergencies, please contact the school administrator at <a href="tel:+15559876543" className="font-medium underline">+1 (555) 987-6543</a>.</p>
+              <p>For emergencies during school hours, please call our main office at <a href="tel:+917908238939" className="font-medium underline">7908238939</a>.</p>
+              <p className="mt-1">For after-hours emergencies, please contact the school administrator at <a href="tel:+919933970075" className="font-medium underline">9933970075</a>.</p>
             </div>
           </div>
         </div>

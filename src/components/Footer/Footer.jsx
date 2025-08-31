@@ -67,12 +67,17 @@ const Footer = () => {
   const contactInfo = [
     { 
       icon: <FaMapMarkerAlt className="text-primary text-xl" />, 
-      text: '123 Education Street, Knowledge City, India - 123456'
+      text: 'Bakhrabad Sabujpally, Vill-Uttar Korkora, P.O.-Bakhrabad, P.S.-Belda, Dist-Paschim Medinipur, West Bengal 721424'
     },
     { 
       icon: <FaPhone className="text-primary text-xl" />, 
-      text: '+91 98765 43210',
-      link: 'tel:+919876543210'
+      text: '7908238939',
+      link: 'tel:+917908238939'
+    },
+    { 
+      icon: <FaPhone className="text-primary text-xl" />, 
+      text: '9933970075',
+      link: 'tel:+919933970075'
     },
     { 
       icon: <FaEnvelope className="text-primary text-xl" />, 
@@ -381,7 +386,7 @@ const Footer = () => {
               <h4 className="text-lg font-semibold text-white mb-4">Need Help?</h4>
               <div className="space-y-3">
                 <motion.a 
-                  href="tel:+919876543210" 
+                  href="tel:+917908238939" 
                   className="flex items-center bg-white/5 hover:bg-white/10 p-3 rounded-lg transition-colors group"
                   whileHover={{ x: 3 }}
                 >
@@ -390,7 +395,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">Call Us</p>
-                    <p className="text-gray-400 text-xs">+91 98765 43210</p>
+                    <p className="text-gray-400 text-xs">7908238939</p>
                   </div>
                 </motion.a>
                 <motion.a 

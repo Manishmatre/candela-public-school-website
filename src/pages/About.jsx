@@ -6,10 +6,10 @@ import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const [counters, setCounters] = useState([
-    { id: 1, target: 18, text: 'Years of Excellence', current: 0 },
-    { id: 2, target: 1200, text: 'Students Enrolled', current: 0 },
-    { id: 3, target: 75, text: 'Qualified Teachers', current: 0 },
-    { id: 4, target: 50, text: 'Awards Won', current: 0 },
+    { id: 1, target: 1, text: 'Year of Operation', current: 0 },
+    { id: 2, target: 120, text: 'Seats Available', current: 0 },
+    { id: 3, target: 10, text: 'Qualified Teachers', current: 0 },
+    { id: 4, target: 1, text: 'Modern Campus', current: 0 },
   ]);
 
   const [ref, inView] = useInView({
@@ -86,11 +86,10 @@ const About = () => {
   ];
 
   const timeline = [
-    { year: '2005', title: 'Foundation', description: 'Established with a vision to provide quality education' },
-    { year: '2010', title: 'Expansion', description: 'Added new facilities and expanded our academic programs' },
-    { year: '2015', title: 'Excellence', description: 'Recognized as one of the top schools in the region' },
-    { year: '2020', title: 'Innovation', description: 'Integrated technology and modern teaching methodologies' },
-    { year: '2023', title: 'Future Ready', description: 'Launched new STEM and creative arts programs' },
+    { year: '2025', title: 'Founded', description: 'Candela Public School begins its journey' },
+    { year: '2025', title: 'Admissions Open', description: 'Admissions opened for Play School (Pre-K/KG) to Class 5' },
+    { year: '2025', title: 'Campus Setup', description: 'Smart classrooms, child-friendly spaces, and a safe, welcoming environment' },
+    { year: '2025', title: 'Community Launch', description: 'Parent orientation and first student activities kick off' },
   ];
 
   return (
@@ -105,7 +104,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Shaping <span className="text-yellow-300">Futures</span> Since 2005
+            Shaping <span className="text-yellow-300">Futures</span> Together
           </motion.h1>
           <motion.div 
             className="w-32 h-1.5 bg-yellow-300 mx-auto mb-8 rounded-full"
@@ -203,17 +202,17 @@ const About = () => {
             >
               <div className="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-primary to-secondary"></div>
               <div className="pl-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Journey Through the Years</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Journey Begins</h2>
                 <p className="text-gray-600 mb-6">
-                  Since our founding in 2005, Candela Public School has been at the forefront of educational excellence, 
-                  consistently pushing boundaries and setting new standards in holistic education.
+                  Candela Public School has just started its journey in Belda. We are focused on building a warm, safe, and inspiring
+                  learning environment for Play School through Class 5, with strong foundations in literacy, numeracy, and values.
                 </p>
                 <p className="text-gray-600 mb-6">
-                  From humble beginnings with just a handful of students to becoming a leading educational institution, 
-                  our journey has been marked by innovation, dedication, and a relentless pursuit of excellence.
+                  This is the beginning of a story we will write together—with our students, parents, and community. Join us as we
+                  grow year by year.
                 </p>
                 <button className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-colors">
-                  Learn More About Our History
+                  Explore Our Vision
                 </button>
               </div>
             </motion.div>

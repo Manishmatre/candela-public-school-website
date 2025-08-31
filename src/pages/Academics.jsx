@@ -5,39 +5,81 @@ import { useState } from 'react';
 const Academics = () => {
   const programs = [
     {
-      title: 'Primary Education',
-      description: 'A strong foundation in core subjects with a focus on literacy, numeracy, and social skills development.',
+      title: 'Play School',
+      description: 'Early years foundational learning through play, stories, rhythm and routines in a nurturing environment.',
       icon: <FaBookOpen className="text-4xl text-primary" />,
-      grades: 'Grades 1-5',
+      grades: 'Ages 3–5 (Pre-K | KG)',
       features: [
-        'Interactive learning environment',
-        'Focus on basic literacy and numeracy',
-        'Introduction to science and social studies',
-        'Creative arts and physical education'
+        'Phonics and pre-literacy activities',
+        'Pre-numeracy and number sense',
+        'Storytelling, rhyme and rhythm',
+        'Fine-motor and gross-motor development',
+        'Social-emotional learning'
       ]
     },
     {
-      title: 'Middle School',
-      description: 'A comprehensive curriculum that builds on foundational skills while introducing more specialized subjects.',
-      icon: <FaGraduationCap className="text-4xl text-primary" />,
-      grades: 'Grades 6-8',
+      title: 'Class 1',
+      description: 'Building strong basics in reading, writing and arithmetic with activity-based learning.',
+      icon: <FaBookReader className="text-4xl text-primary" />,
+      grades: 'Grade 1',
       features: [
-        'Subject-specialized teachers',
-        'Introduction to second language',
-        'Basic computer literacy',
-        'Project-based learning'
+        'English reading and handwriting',
+        'Numbers up to 100, addition/subtraction',
+        'EVS: self, family and surroundings',
+        'Art, music and free play',
+        'Values and good habits'
       ]
     },
     {
-      title: 'High School',
-      description: 'Advanced academic preparation with a focus on critical thinking, research skills, and college readiness.',
+      title: 'Class 2',
+      description: 'Strengthening literacy and numeracy; encouraging curiosity and expression.',
+      icon: <FaLightbulb className="text-4xl text-primary" />,
+      grades: 'Grade 2',
+      features: [
+        'Reading comprehension and vocabulary',
+        '2-digit arithmetic, measurement and time',
+        'EVS: neighbourhood and community',
+        'Crafts, storytelling and recitation',
+        'Foundations of computer awareness'
+      ]
+    },
+    {
+      title: 'Class 3',
+      description: 'Moving to structured chapters with projects and discovery-based learning.',
+      icon: <FaChartLine className="text-4xl text-primary" />,
+      grades: 'Grade 3',
+      features: [
+        'Grammar, writing and cursive practice',
+        'Multiplication tables, fractions basics',
+        'Science and Social Studies introduction',
+        'Computer fundamentals and typing',
+        'Drawing, dance and singing'
+      ]
+    },
+    {
+      title: 'Class 4',
+      description: 'Conceptual depth with projects, presentations and regular assessments.',
       icon: <FaLaptopCode className="text-4xl text-primary" />,
-      grades: 'Grades 9-12',
+      grades: 'Grade 4',
       features: [
-        'Comprehensive college prep curriculum',
-        'Advanced Placement (AP) courses',
-        'Career counseling',
-        'Extracurricular leadership opportunities'
+        'Reading to learn: chapters and summaries',
+        'Long division, factors and geometry basics',
+        'Science experiments and EVS projects',
+        'ICT: text editing and presentation skills',
+        'Sports and house activities'
+      ]
+    },
+    {
+      title: 'Class 5',
+      description: 'Preparation for upper-primary with integrated projects and skill-building.',
+      icon: <FaHandsHelping className="text-4xl text-primary" />,
+      grades: 'Grade 5',
+      features: [
+        'Advanced grammar and composition',
+        'Fractions/decimals, data and geometry',
+        'General Science and Social Sciences',
+        'ICT: internet safety and research basics',
+        'Art, music and leadership roles'
       ]
     }
   ];

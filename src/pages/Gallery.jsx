@@ -12,7 +12,9 @@ import {
   FaSchool, 
   FaChalkboardTeacher,
   FaArrowRight,
-  FaDownload
+  FaDownload,
+  FaVideo,
+  FaPlay
 } from 'react-icons/fa';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -47,12 +49,20 @@ const galleryImages = {
   ],
 };
 
+// Sample video items (YouTube). For real use, replace ids/urls with school videos
+const galleryVideos = [
+  { id: 'dQw4w9WgXcQ', title: 'Annual Day Highlights', platform: 'youtube' },
+  { id: 'ysz5S6PUM-U', title: 'Campus Tour', platform: 'youtube' },
+  { id: 'aqz-KE-bpKQ', title: 'Sports Meet Moments', platform: 'youtube' },
+];
+
 const categories = [
   { id: 'all', name: 'All Photos', icon: <FaImages className="mr-2" />, count: 8 },
   { id: 'campus', name: 'Campus', icon: <FaSchool className="mr-2" />, count: 2 },
   { id: 'events', name: 'Events', icon: <FaTrophy className="mr-2" />, count: 2 },
   { id: 'sports', name: 'Sports', icon: <FaFutbol className="mr-2" />, count: 2 },
   { id: 'classrooms', name: 'Classrooms', icon: <FaChalkboardTeacher className="mr-2" />, count: 2 },
+  { id: 'videos', name: 'Videos', icon: <FaVideo className="mr-2" />, count: galleryVideos.length },
 ];
 
 const imageTitles = {
@@ -67,8 +77,10 @@ const Gallery = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const filteredImages = galleryImages[selectedCategory] || [];
+  const isVideos = selectedCategory === 'videos';
+  const filteredImages = isVideos ? [] : (galleryImages[selectedCategory] || []);
 
   const handleImageClick = (image, index) => {
     setSelectedImage(image);
@@ -78,6 +90,7 @@ const Gallery = () => {
 
   const closeModal = () => {
     setSelectedImage(null);
+    setSelectedVideo(null);
     document.body.style.overflow = 'auto';
   };
 
@@ -144,7 +157,7 @@ const Gallery = () => {
       <section className="max-w-6xl mx-auto mb-16 px-4">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-3xl font-bold text-center mb-6 font-baloo">
-            {selectedCategory === 'all' ? 'All Photos' : imageTitles[selectedCategory] || 'Gallery'}
+            {isVideos ? 'School Videos' : (selectedCategory === 'all' ? 'All Photos' : imageTitles[selectedCategory] || 'Gallery')}
           </h2>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {categories.map((category) => (
@@ -168,6 +181,7 @@ const Gallery = () => {
             ))}
           </div>
           
+          {!isVideos && (
           <div className="relative w-full max-w-2xl mb-8">
             <input
               type="text"
@@ -178,67 +192,103 @@ const Gallery = () => {
             />
             <FaSearch className="absolute left-4 top-4 text-gray-400" />
           </div>
+          )}
         </div>
       </section>
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid or Videos Grid */}
       <section id="gallery-grid" className="max-w-7xl mx-auto px-4">
-        {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, index) => (
-              <div key={index} className="bg-gray-200 rounded-xl h-64 animate-pulse"></div>
-            ))}
-          </div>
-        ) : filteredImages.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredImages.map((image, index) => (
+        {isVideos ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {galleryVideos.map((vid, index) => (
               <motion.div
-                key={`${image.id}-${index}`}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                key={vid.id}
+                className="relative overflow-hidden rounded-2xl shadow-lg bg-black cursor-pointer group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.03 }}
-                onClick={() => handleImageClick(image, index)}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                onClick={() => {
+                  setSelectedVideo(vid);
+                  document.body.style.overflow = 'hidden';
+                }}
               >
-                <LazyLoadImage
-                  src={image.src}
-                  alt={`Gallery ${image.id}`}
-                  effect="blur"
-                  className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
-                  wrapperClassName="w-full h-full"
+                <img 
+                  src={`https://img.youtube.com/vi/${vid.id}/hqdefault.jpg`} 
+                  alt={vid.title}
+                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-white font-bold text-lg mb-1 font-baloo">
-                      {imageTitles[image.category] || 'School Event'}
-                    </h3>
-                    <p className="text-gray-200 text-sm font-open-sans">
-                      {image.category.charAt(0).toUpperCase() + image.category.slice(1)} • {new Date().toLocaleDateString()}
-                    </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white/90 group-hover:bg-white transition-colors shadow-lg">
+                    <FaPlay className="text-primary w-6 h-6 ml-1" />
                   </div>
                 </div>
-                <div className="absolute top-4 right-4 p-2 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <FaSearch className="text-white" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="font-semibold font-baloo">{vid.title}</h3>
                 </div>
               </motion.div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-inner">
-            <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FaImages className="text-gray-400 text-3xl" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2 font-baloo">No images found</h3>
-            <p className="text-gray-500 max-w-md mx-auto font-open-sans">
-              We couldn't find any photos matching your search. Try a different category or keyword.
-            </p>
-          </div>
+          <> 
+            {isLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {[...Array(8)].map((_, index) => (
+                  <div key={index} className="bg-gray-200 rounded-xl h-64 animate-pulse"></div>
+                ))}
+              </div>
+            ) : filteredImages.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {filteredImages.map((image, index) => (
+                  <motion.div
+                    key={`${image.id}-${index}`}
+                    className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.03 }}
+                    onClick={() => handleImageClick(image, index)}
+                  >
+                    <LazyLoadImage
+                      src={image.src}
+                      alt={`Gallery ${image.id}`}
+                      effect="blur"
+                      className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                      wrapperClassName="w-full h-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                      <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="text-white font-bold text-lg mb-1 font-baloo">
+                          {imageTitles[image.category] || 'School Event'}
+                        </h3>
+                        <p className="text-gray-200 text-sm font-open-sans">
+                          {image.category.charAt(0).toUpperCase() + image.category.slice(1)} • {new Date().toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4 p-2 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <FaSearch className="text-white" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 bg-white rounded-2xl shadow-inner">
+                <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FaImages className="text-gray-400 text-3xl" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2 font-baloo">No images found</h3>
+                <p className="text-gray-500 max-w-md mx-auto font-open-sans">
+                  We couldn't find any photos matching your search. Try a different category or keyword.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
-        {selectedImage && (
+        {(selectedImage || selectedVideo) && (
           <motion.div
             className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
@@ -259,89 +309,115 @@ const Gallery = () => {
               <FaTimes className="w-6 h-6" />
             </motion.button>
 
-            {/* Navigation Arrows */}
-            <motion.button
-              className="absolute left-6 text-white text-2xl p-4 rounded-full bg-black/50 hover:bg-white/10 transition-colors z-10"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrev();
-              }}
-              whileHover={{ x: -5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaChevronLeft className="w-6 h-6" />
-            </motion.button>
-            <motion.button
-              className="absolute right-6 text-white text-2xl p-4 rounded-full bg-black/50 hover:bg-white/10 transition-colors z-10"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNext();
-              }}
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaChevronRight className="w-6 h-6" />
-            </motion.button>
+            {/* Navigation Arrows for images only */}
+            {!selectedVideo && (
+              <>
+                <motion.button
+                  className="absolute left-6 text-white text-2xl p-4 rounded-full bg-black/50 hover:bg-white/10 transition-colors z-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToPrev();
+                  }}
+                  whileHover={{ x: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaChevronLeft className="w-6 h-6" />
+                </motion.button>
+                <motion.button
+                  className="absolute right-6 text-white text-2xl p-4 rounded-full bg-black/50 hover:bg-white/10 transition-colors z-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToNext();
+                  }}
+                  whileHover={{ x: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaChevronRight className="w-6 h-6" />
+                </motion.button>
+              </>
+            )}
 
-            {/* Image Counter */}
-            <div className="absolute bottom-8 left-0 right-0 text-center">
-              <span className="inline-block bg-black/50 text-white px-4 py-2 rounded-full text-sm">
-                {currentIndex + 1} of {filteredImages.length}
-              </span>
-            </div>
+            {/* Counter for images only */}
+            {!selectedVideo && (
+              <div className="absolute bottom-8 left-0 right-0 text-center">
+                <span className="inline-block bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+                  {currentIndex + 1} of {filteredImages.length}
+                </span>
+              </div>
+            )}
 
-            {/* Image Content */}
+            {/* Content */}
             <div className="relative max-w-6xl w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.img
-                  key={selectedImage.id}
-                  src={selectedImage.src}
-                  alt={`Gallery ${selectedImage.id}`}
-                  className="max-h-[85vh] max-w-full rounded-xl shadow-2xl"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                />
-                
-                {/* Image Info */}
+              {selectedVideo ? (
                 <motion.div 
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-xl"
+                  className="relative w-full max-w-4xl aspect-video"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h3 className="text-white text-xl font-bold mb-1 font-baloo">
-                        {imageTitles[selectedImage.category] || 'School Event'}
-                      </h3>
-                      <p className="text-gray-300 text-sm font-open-sans">
-                        {selectedImage.category.charAt(0).toUpperCase() + selectedImage.category.slice(1)} • {new Date().toLocaleDateString()}
-                      </p>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-white/70 text-sm font-medium">
-                        {currentIndex + 1} / {filteredImages.length}
-                      </span>
-                      <a 
-                        href={selectedImage.src} 
-                        download 
-                        className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaDownload className="text-white w-4 h-4" />
-                      </a>
-                    </div>
-                  </div>
+                  <iframe
+                    className="w-full h-full rounded-xl shadow-2xl"
+                    src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+                    title={selectedVideo.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
                 </motion.div>
-              </motion.div>
+              ) : (
+                <motion.div 
+                  className="relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.img
+                    key={selectedImage.id}
+                    src={selectedImage.src}
+                    alt={`Gallery ${selectedImage.id}`}
+                    className="max-h-[85vh] max-w-full rounded-xl shadow-2xl"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Image Info */}
+                  <motion.div 
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-xl"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="text-white text-xl font-bold mb-1 font-baloo">
+                          {imageTitles[selectedImage.category] || 'School Event'}
+                        </h3>
+                        <p className="text-gray-300 text-sm font-open-sans">
+                          {selectedImage.category.charAt(0).toUpperCase() + selectedImage.category.slice(1)} • {new Date().toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-white/70 text-sm font-medium">
+                          {currentIndex + 1} / {filteredImages.length}
+                        </span>
+                        <a 
+                          href={selectedImage.src} 
+                          download 
+                          className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaDownload className="text-white w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
             </div>
           </motion.div>
         )}

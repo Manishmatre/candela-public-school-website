@@ -332,6 +332,78 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Affiliations, Offerings, and Activities */}
+      <section className="py-12 bg-gradient-to-r from-indigo-50 via-blue-50 to-indigo-50">
+        <div className="container mx-auto px-4">
+          {/* Affiliations */}
+          <motion.div 
+            className="text-center mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Our Affiliations</span>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-800">Franchisee of
+              <span className="text-blue-600"> Londinium Kids</span> and
+              <span className="text-purple-600"> SS Holy Child Public School</span>
+            </h3>
+          </motion.div>
+
+          {/* Offerings */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {[
+              { icon: '🧠', title: 'Smart Classroom' },
+              { icon: '👩‍🏫', title: 'Expert Faculties' },
+              { icon: '📘', title: 'Cambridge Publishers Books' },
+              { icon: '📚', title: 'CBSE Curriculum' },
+            ].map((item, idx) => (
+              <motion.div 
+                key={item.title}
+                className="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex items-center gap-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="text-2xl">{item.icon}</div>
+                <div className="text-gray-800 font-semibold">{item.title}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Activities */}
+          <motion.div 
+            className="bg-white rounded-2xl shadow-md border border-gray-100 p-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <h4 className="text-lg md:text-xl font-bold text-gray-900">Activities available at campus</h4>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { icon: '🎤', label: 'Singing' },
+                  { icon: '🗣️', label: 'Recitation' },
+                  { icon: '💃', label: 'Dance' },
+                  { icon: '🎨', label: 'Drawing' },
+                ].map((act) => (
+                  <span 
+                    key={act.label} 
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium border border-indigo-100"
+                  >
+                    <span className="text-base">{act.icon}</span>
+                    {act.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Admission Open Banner */}
       <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-8">
         <div className="container mx-auto px-4">
