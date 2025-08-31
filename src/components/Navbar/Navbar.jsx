@@ -17,6 +17,17 @@ const Navbar = () => {
     setActiveDropdown(null);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = original || 'auto';
+      };
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -314,14 +325,34 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed inset-0 bg-white z-40 pt-24 px-6 overflow-y-auto lg:hidden shadow-2xl"
-            >
-              <div className="flex flex-col space-y-2 mt-4 pb-2">
+            <>
+              {/* Backdrop */}
+              <motion.div
+                className="fixed inset-0 bg-black/40 z-50 lg:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsOpen(false)}
+              />
+              {/* Slide-in Panel */}
+              <motion.div 
+                initial={{ opacity: 0, x: '100%' }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="fixed inset-0 bg-white z-[60] pt-32 pb-8 px-6 h-dvh lg:hidden shadow-2xl flex flex-col min-h-0 overflow-hidden overscroll-contain"
+                style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2rem)' }}
+              >
+              {/* Internal close button */}
+              <motion.button
+                aria-label="Close menu"
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow-sm text-gray-700"
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaTimes className="h-5 w-5" />
+              </motion.button>
+              <div className="flex-1 flex flex-col space-y-2 mt-4 pb-24 overflow-y-auto min-h-0">
                 {navLinks.map((link, index) => (
                   <div key={link.name} className="border-b border-gray-100 last:border-0">
                     <div className="flex flex-col">
@@ -383,16 +414,29 @@ const Navbar = () => {
                     </div>
                   </div>
                 ))}
-                <motion.a 
-                  href="tel:+919876543210" 
-                  className="flex items-center justify-center bg-primary text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-all mt-2 shadow-md font-baloo font-semibold"
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <FaPhoneAlt className="mr-2" />
-                  <span>+91 98765 43210</span>
-                </motion.a>
+                {/* Mobile CTAs */}
+                <div className="pt-4 grid grid-cols-1 gap-3">
+                  <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                    <Link 
+                      to="/admissions" 
+                      className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-yellow-300 to-yellow-400 text-blue-700 font-bold rounded-full text-sm shadow-lg hover:shadow-xl transition-all"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Enroll Now <FaArrowRight className="ml-2" />
+                    </Link>
+                  </motion.div>
+                  <motion.a 
+                    href="tel:+919876543210" 
+                    className="w-full flex items-center justify-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-md font-baloo font-semibold"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaPhoneAlt className="mr-2" />
+                    <span>+91 98765 43210</span>
+                  </motion.a>
+                </div>
               </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>
