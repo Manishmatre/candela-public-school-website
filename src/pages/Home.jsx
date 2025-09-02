@@ -4,6 +4,43 @@ import { FaGraduationCap, FaLaptop, FaChalkboardTeacher, FaArrowRight } from 're
 import { motion } from 'framer-motion';
 
 const Home = () => {
+  // Countdown timer state
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    // Set the target date (30 days from now)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 15);
+    targetDate.setHours(23, 59, 59, 0);
+
+    const updateCountdown = () => {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      }
+    };
+
+    // Initial call
+    updateCountdown();
+    
+    // Update every second
+    const timer = setInterval(updateCountdown, 1000);
+    
+    // Cleanup
+    return () => clearInterval(timer);
+  }, []);
   const [counters, setCounters] = useState([
     { id: 1, target: 18, text: 'Years of Excellence', current: 0 },
     { id: 2, target: 1200, text: 'Students Enrolled', current: 0 },
@@ -405,62 +442,82 @@ const Home = () => {
       </section>
 
       {/* Admission Open Banner */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-8">
+      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-6 sm:py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-center md:text-left mb-4 md:mb-0">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                🎉 Admission Open for Academic Year 2025-26! 🎉
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
+                🎉 Admission Open for 2025-26! 🎉
               </h2>
-              <p className="text-purple-100">
-                Limited seats available for Playgroup to UKG. Secure your child's future today!
+              <p className="text-purple-100 text-sm sm:text-base">
+                Limited seats for Playgroup to UKG. Secure your child's future today!
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 w-full xs:w-auto">
               <Link 
                 to="/admission" 
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-purple-700 font-semibold rounded-lg shadow-md hover:bg-purple-50 transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 bg-white text-purple-700 font-medium sm:font-semibold rounded-lg shadow-md hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
               >
                 Apply Now
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
               <Link 
                 to="/virtual-tour" 
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-white text-white font-medium sm:font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 text-sm sm:text-base"
               >
-                Take a Virtual Tour
+                Virtual Tour
               </Link>
             </div>
           </div>
           
           {/* Countdown Timer */}
-          <div className="mt-6 pt-4 border-t border-purple-400 border-opacity-30">
+          <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-purple-400 border-opacity-30">
             <div className="flex justify-center">
-              <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 inline-flex items-center">
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold">15</div>
-                  <div className="text-xs uppercase tracking-wider text-purple-100">Days</div>
+              <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-3 sm:p-4 flex flex-wrap justify-center items-center gap-1 sm:gap-2">
+                <div className="flex items-center">
+                  <div className="text-center px-2 sm:px-3">
+                    <div className="text-xl sm:text-2xl font-bold min-w-[32px] sm:min-w-[36px]">
+                      {timeLeft.days.toString().padStart(2, '0')}
+                    </div>
+                    <div className="text-[10px] xs:text-xs uppercase tracking-wider text-purple-100">Days</div>
+                  </div>
+                  <div className="text-xl sm:text-2xl text-purple-200">:</div>
                 </div>
-                <div className="text-2xl text-purple-200">:</div>
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold">08</div>
-                  <div className="text-xs uppercase tracking-wider text-purple-100">Hours</div>
+                
+                <div className="flex items-center">
+                  <div className="text-center px-2 sm:px-3">
+                    <div className="text-xl sm:text-2xl font-bold min-w-[32px] sm:min-w-[36px]">
+                      {timeLeft.hours.toString().padStart(2, '0')}
+                    </div>
+                    <div className="text-[10px] xs:text-xs uppercase tracking-wider text-purple-100">Hours</div>
+                  </div>
+                  <div className="text-xl sm:text-2xl text-purple-200">:</div>
                 </div>
-                <div className="text-2xl text-purple-200">:</div>
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold">42</div>
-                  <div className="text-xs uppercase tracking-wider text-purple-100">Minutes</div>
+                
+                <div className="flex items-center">
+                  <div className="text-center px-2 sm:px-3">
+                    <div className="text-xl sm:text-2xl font-bold min-w-[32px] sm:min-w-[36px]">
+                      {timeLeft.minutes.toString().padStart(2, '0')}
+                    </div>
+                    <div className="text-[10px] xs:text-xs uppercase tracking-wider text-purple-100">Mins</div>
+                  </div>
+                  <div className="text-xl sm:text-2xl text-purple-200">:</div>
                 </div>
-                <div className="text-2xl text-purple-200">:</div>
-                <div className="text-center px-4">
-                  <div className="text-2xl font-bold">30</div>
-                  <div className="text-xs uppercase tracking-wider text-purple-100">Seconds</div>
+                
+                <div className="flex items-center">
+                  <div className="text-center px-2 sm:px-3">
+                    <div className="text-xl sm:text-2xl font-bold min-w-[32px] sm:min-w-[36px]">
+                      {timeLeft.seconds.toString().padStart(2, '0')}
+                    </div>
+                    <div className="text-[10px] xs:text-xs uppercase tracking-wider text-purple-100">Secs</div>
+                  </div>
                 </div>
-                <div className="ml-6 pl-6 border-l border-purple-400 border-opacity-30">
-                  <div className="text-sm text-purple-100">Early Bird Discount Ends In</div>
-                  <div className="text-yellow-300 font-bold">Hurry! Limited Time Offer</div>
+                
+                <div className="mt-2 xs:mt-0 xs:ml-3 xs:pl-3 xs:border-l border-purple-400 border-opacity-30 text-center xs:text-left">
+                  <div className="text-xs sm:text-sm text-purple-100">Early Bird Discount Ends In</div>
+                  <div className="text-yellow-300 font-semibold text-sm sm:text-base">Hurry! Limited Time Offer</div>
                 </div>
               </div>
             </div>

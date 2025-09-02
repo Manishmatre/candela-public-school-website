@@ -340,26 +340,39 @@ const Navbar = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className="fixed inset-0 bg-white z-[60] pt-6 pb-8 px-6 h-dvh lg:hidden shadow-2xl flex flex-col min-h-0 overflow-hidden overscroll-contain"
-                style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2rem)' }}
+                className="fixed inset-0 bg-white z-[60] pt-6 pb-8 px-6 h-dvh lg:hidden shadow-2xl flex flex-col min-h-0 overflow-y-auto"
+                style={{
+                  paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2rem)',
+                  maxWidth: '100vw',
+                  left: 0,
+                  right: 0
+                }}
               >
-              {/* Mobile Header with Logo */}
-              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
-                  <img src={Logo} alt="Candela Public School" className="h-10 w-auto object-contain" />
-                </Link>
-              </div>
-              {/* Internal close button */}
-              <motion.button
-                aria-label="Close menu"
-                onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow-sm text-gray-700"
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaTimes className="h-5 w-5" />
-              </motion.button>
-              <div className="flex-1 flex flex-col space-y-2 mt-4 pb-24 overflow-y-auto min-h-0">
-                {navLinks.map((link, index) => (
+                {/* Mobile Header with Logo and Close Button */}
+                <div className="flex items-center justify-between pb-4 border-b border-gray-100 sticky top-0 bg-white pt-1 z-10">
+                  <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
+                    <img 
+                      src={Logo} 
+                      alt="Candela Public School" 
+                      className="h-10 w-auto object-contain max-w-[180px]"
+                      style={{
+                        width: 'auto',
+                        height: '40px',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </Link>
+                      <motion.button
+                    aria-label="Close menu"
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 shadow-sm text-gray-700"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaTimes className="h-5 w-5" />
+                  </motion.button>
+                </div>
+                <div className="flex-1 flex flex-col space-y-2 mt-4 pb-24 overflow-y-auto min-h-0">
+                  {navLinks.map((link, index) => (
                   <div key={link.name} className="border-b border-gray-100 last:border-0">
                     <div className="flex flex-col">
                       <Link
