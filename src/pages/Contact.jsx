@@ -13,7 +13,7 @@ const addFAQSchema = () => {
         "name": "What are the school timings at Candela Public School?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our regular school hours are from 8:00 AM to 2:30 PM, Monday through Friday. Early childhood programs may have different schedules."
+          "text": "Our regular school hours are from 8:00 AM to 2:30 PM, Monday through Friday. We are located at Bakhrabad Sabujpally, Vill-Uttar Korkora, P.O.-Bakhrabad, Dist-Paschim Medinipur, West Bengal 721424."
         }
       },
       {
@@ -37,7 +37,7 @@ const addFAQSchema = () => {
         "name": "Does Candela Public School provide transportation services?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we offer safe and reliable transportation services covering various routes across Mumbai. Please contact our office for route details and availability."
+          "text": "Yes, we offer safe and reliable transportation services covering various routes across Paschim Medinipur district. Please contact our office for route details and availability."
         }
       },
       {

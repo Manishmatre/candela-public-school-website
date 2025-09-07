@@ -79,7 +79,7 @@ export const addServiceSchema = () => {
     },
     "areaServed": {
       "@type": "City",
-      "name": "Mumbai"
+      "name": "Paschim Medinipur"
     },
     "serviceType": "Educational Services",
     "hasOfferCatalog": {
@@ -151,6 +151,7 @@ export const addHowToSchema = () => {
       {
         "@type": "HowToStep",
         "name": "Submit Documents",
+        "address": "Bakhrabad Sabujpally, Paschim Medinipur, West Bengal, India",
         "text": "Submit required documents including birth certificate, previous school records, and photographs"
       },
       {
@@ -180,12 +181,12 @@ export const addQASchema = () => {
     "@type": "QAPage",
     "mainEntity": {
       "@type": "Question",
-      "name": "Which is the best CBSE school in Mumbai?",
-      "text": "Looking for the best CBSE school in Mumbai for my child's admission",
+      "name": "Which is the best CBSE school in West Bengal?",
+      "text": "Looking for the best CBSE school in West Bengal for my child's admission",
       "answerCount": 1,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Candela Public School is widely recognized as one of the best CBSE schools in Mumbai, offering quality education from Playgroup to Class 12 with modern facilities, experienced faculty, and excellent academic results.",
+        "text": "Candela Public School is widely recognized as one of the best CBSE schools in West Bengal, offering quality education from Playgroup to Class 12 with modern facilities, experienced faculty, and excellent academic results.",
         "author": {
           "@type": "Organization",
           "name": "Candela Public School"

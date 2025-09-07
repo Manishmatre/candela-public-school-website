@@ -2,44 +2,44 @@
 
 export const seoConfig = {
   home: {
-    title: "Candela Public School | #1 CBSE School Mumbai | Admission Open 2025-26",
-    description: "Top-rated CBSE school in Mumbai with 18+ years excellence. Modern facilities, experienced faculty, holistic development. Best school for your child's bright future. Admission open!",
-    keywords: "best CBSE school Mumbai, top school Mumbai, Candela Public School, school admission 2025, English medium school, play school Mumbai, primary school, secondary school, quality education Mumbai",
+    title: "Candela Public School | #1 CBSE School West Bengal | Admission Open 2025-26",
+    description: "Top-rated CBSE school in Paschim Medinipur, West Bengal with 18+ years excellence. Modern facilities, experienced faculty, holistic development. Best school for your child's bright future. Admission open!",
+    keywords: "best CBSE school West Bengal, top school Paschim Medinipur, Candela Public School, school admission 2025, English medium school Bakhrabad, play school West Bengal, primary school, secondary school, quality education West Bengal",
     canonical: "https://candelapublicschool.com/",
     ogImage: "https://candelapublicschool.com/images/school-campus.jpg"
   },
   about: {
-    title: "About Candela Public School | 18+ Years of Educational Excellence in Mumbai",
-    description: "Learn about Mumbai's premier CBSE school with 18+ years of excellence, experienced faculty, modern infrastructure, and proven track record of student success.",
-    keywords: "about Candela Public School, school history, educational excellence Mumbai, CBSE school experience, qualified teachers, school infrastructure",
+    title: "About Candela Public School | 18+ Years of Educational Excellence in West Bengal",
+    description: "Learn about Paschim Medinipur's premier CBSE school with 18+ years of excellence, experienced faculty, modern infrastructure, and proven track record of student success.",
+    keywords: "about Candela Public School, school history, educational excellence West Bengal, CBSE school experience, qualified teachers, school infrastructure Bakhrabad",
     canonical: "https://candelapublicschool.com/about",
     ogImage: "https://candelapublicschool.com/images/about-school.jpg"
   },
   academics: {
-    title: "CBSE Academic Programs | Playgroup to Class 12 | Candela Public School Mumbai",
-    description: "Comprehensive CBSE curriculum from Playgroup to Class 12. Expert faculty, modern teaching methods, excellent results. Best academic programs in Mumbai.",
-    keywords: "CBSE curriculum, academic programs Mumbai, playgroup to class 12, quality education, modern teaching methods, school syllabus, educational programs",
+    title: "CBSE Academic Programs | Playgroup to Class 12 | Candela Public School West Bengal",
+    description: "Comprehensive CBSE curriculum from Playgroup to Class 12. Expert faculty, modern teaching methods, excellent results. Best academic programs in Paschim Medinipur.",
+    keywords: "CBSE curriculum, academic programs West Bengal, playgroup to class 12, quality education, modern teaching methods, school syllabus, educational programs Bakhrabad",
     canonical: "https://candelapublicschool.com/academics",
     ogImage: "https://candelapublicschool.com/images/academics.jpg"
   },
   admissions: {
-    title: "School Admission 2025-26 | Apply Now | Candela Public School Mumbai",
-    description: "Admission open for 2025-26! Apply now for Playgroup to Class 12 at Mumbai's top CBSE school. Limited seats available. Secure your child's future today.",
-    keywords: "school admission 2025, Mumbai school admission, CBSE school admission, apply online, school enrollment, admission process, limited seats",
+    title: "School Admission 2025-26 | Apply Now | Candela Public School West Bengal",
+    description: "Admission open for 2025-26! Apply now for Playgroup to Class 12 at West Bengal's top CBSE school. Limited seats available. Secure your child's future today.",
+    keywords: "school admission 2025, West Bengal school admission, CBSE school admission, apply online, school enrollment, admission process, limited seats Bakhrabad",
     canonical: "https://candelapublicschool.com/admissions",
     ogImage: "https://candelapublicschool.com/images/admission-open.jpg"
   },
   gallery: {
-    title: "School Gallery | Campus Photos | Candela Public School Mumbai",
+    title: "School Gallery | Campus Photos | Candela Public School West Bengal",
     description: "Explore our beautiful campus, modern facilities, classrooms, laboratories, sports facilities, and student activities through our comprehensive photo gallery.",
-    keywords: "school gallery, campus photos, school facilities Mumbai, modern classrooms, school infrastructure, student activities, sports facilities",
+    keywords: "school gallery, campus photos, school facilities West Bengal, modern classrooms, school infrastructure, student activities, sports facilities Bakhrabad",
     canonical: "https://candelapublicschool.com/gallery",
     ogImage: "https://candelapublicschool.com/images/gallery-main.jpg"
   },
   contact: {
-    title: "Contact Candela Public School | Address, Phone, Email | Mumbai CBSE School",
-    description: "Get in touch with Mumbai's best CBSE school. Find our address, phone number, email, and office hours. Schedule a visit or inquiry about admissions.",
-    keywords: "contact school Mumbai, school address, phone number, email, school location, visit school, admission inquiry, school office hours",
+    title: "Contact Candela Public School | Address, Phone, Email | West Bengal CBSE School",
+    description: "Get in touch with West Bengal's best CBSE school. Find our address, phone number, email, and office hours. Schedule a visit or inquiry about admissions.",
+    keywords: "contact school West Bengal, school address Bakhrabad, phone number, email, school location, visit school, admission inquiry, school office hours",
     canonical: "https://candelapublicschool.com/contact",
     ogImage: "https://candelapublicschool.com/images/contact-school.jpg"
   }
@@ -69,12 +69,12 @@ export const advancedMetaTags = {
   
   // Local SEO
   local: [
-    { name: "geo.region", content: "IN-MH" },
-    { name: "geo.placename", content: "Mumbai" },
-    { name: "geo.position", content: "19.0760;72.8777" },
-    { name: "ICBM", content: "19.0760, 72.8777" },
-    { name: "locality", content: "Mumbai" },
-    { name: "region", content: "Maharashtra" },
+    { name: "geo.region", content: "IN-WB" },
+    { name: "geo.placename", content: "Bakhrabad, Paschim Medinipur" },
+    { name: "geo.position", content: "22.3569;87.7850" },
+    { name: "ICBM", content: "22.3569, 87.7850" },
+    { name: "locality", content: "Paschim Medinipur" },
+    { name: "region", content: "West Bengal" },
     { name: "country", content: "India" }
   ],
   
@@ -92,26 +92,26 @@ export const advancedMetaTags = {
 // High-Impact Keywords for Rankings
 export const targetKeywords = {
   primary: [
-    "best CBSE school Mumbai",
-    "top school Mumbai", 
+    "best CBSE school West Bengal",
+    "top school Paschim Medinipur", 
     "Candela Public School",
-    "school admission 2025 Mumbai",
-    "quality education Mumbai"
+    "school admission 2025 West Bengal",
+    "quality education West Bengal"
   ],
   secondary: [
-    "English medium school Mumbai",
-    "play school Mumbai",
-    "primary school Mumbai", 
-    "secondary school Mumbai",
+    "English medium school Bakhrabad",
+    "play school West Bengal",
+    "primary school Paschim Medinipur", 
+    "secondary school West Bengal",
     "CBSE board school",
     "modern school facilities",
-    "experienced teachers Mumbai"
+    "experienced teachers West Bengal"
   ],
   longTail: [
-    "best CBSE school in Mumbai for admission 2025",
-    "top rated English medium school Mumbai",
-    "quality education with modern facilities Mumbai",
-    "experienced faculty CBSE school Mumbai",
-    "holistic development school Mumbai"
+    "best CBSE school in West Bengal for admission 2025",
+    "top rated English medium school Paschim Medinipur",
+    "quality education with modern facilities West Bengal",
+    "experienced faculty CBSE school Bakhrabad",
+    "holistic development school West Bengal"
   ]
 };
