@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGraduationCap, FaLaptop, FaChalkboardTeacher, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import PageSEO from '../components/SEO/PageSEO';
 
 const Home = () => {
   // Countdown timer state

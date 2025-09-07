@@ -1,6 +1,77 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+
+// FAQ Schema for SEO
+const addFAQSchema = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the school timings at Candela Public School?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our regular school hours are from 8:00 AM to 2:30 PM, Monday through Friday. Early childhood programs may have different schedules."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "How can I apply for admission at Candela Public School?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can start the admission process by filling out our online inquiry form or by visiting our admissions office. Please visit our Admissions page for detailed information about requirements and procedures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What curriculum does Candela Public School follow?",
+        "acceptedAnswer": {
+          "@type": "Answer", 
+          "text": "Candela Public School follows the CBSE (Central Board of Secondary Education) curriculum from Playgroup to Class 12, providing quality education with modern teaching methods."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Candela Public School provide transportation services?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we offer safe and reliable transportation services covering various routes across Mumbai. Please contact our office for route details and availability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What facilities are available at Candela Public School?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our school features modern classrooms, well-equipped laboratories, library, sports facilities, computer lab, art room, and a safe playground for holistic development of students."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the fee structure at Candela Public School?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our fee structure varies by grade level and includes tuition, activities, and facilities. Please contact our admissions office for detailed fee information and payment plans."
+        }
+      }
+    ]
+  };
+
+  // Remove existing FAQ schema if present
+  const existingSchema = document.querySelector('script[type="application/ld+json"][data-faq]');
+  if (existingSchema) {
+    existingSchema.remove();
+  }
+
+  // Add new FAQ schema
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.setAttribute('data-faq', 'true');
+  script.textContent = JSON.stringify(faqSchema);
+  document.head.appendChild(script);
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +84,19 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState('contact'); // 'contact' or 'visit'
+
+  // Add FAQ schema on component mount for SEO
+  useEffect(() => {
+    addFAQSchema();
+    
+    // Cleanup function to remove schema when component unmounts
+    return () => {
+      const schema = document.querySelector('script[type="application/ld+json"][data-faq]');
+      if (schema) {
+        schema.remove();
+      }
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

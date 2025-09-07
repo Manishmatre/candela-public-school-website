@@ -1,0 +1,6 @@
+Contact: mailto:security@candelapublicschool.com
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://candelapublicschool.com/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://candelapublicschool.com/.well-known/security.txt
+Policy: https://candelapublicschool.com/security-policy
