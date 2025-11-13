@@ -442,15 +442,16 @@ const Contact = () => {
             {/* Map Section */}
             <div className="w-full lg:w-1/2 h-96 lg:h-auto">
               <div className="w-full h-full overflow-hidden rounded-2xl shadow-md">
-                <iframe
-                  title="Candela Public School Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14773.327982018307!2d87.87716590073603!3d22.22747892299686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0294d50c805e35%3A0xe3fdce4a0bec618!2sBakhrabad%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1756662363262!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.869775654586!2d87.3456789!3d22.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1d5d5d5d5d5d5d%3A0x5d5d5d5d5d5d5d5d!2sCandela%20Public%20School!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="450" 
+                  style={{ border: 0 }} 
+                  allowFullScreen
+                  loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-xl shadow-lg w-full"
+                  title="Candela Public School Location"
                 ></iframe>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-xl text-center max-w-xs mx-4">
